@@ -5,8 +5,8 @@
 ### Prerequisites
 
 ```bash
-# Source ROS2
-source /opt/ros/jazzy/setup.bash
+# Source ROS2 (Humble shown)
+source /opt/ros/humble/setup.bash
 
 # Build the package
 colcon build --packages-select elevation_mapping_cupy
@@ -133,7 +133,7 @@ add_ros_isolated_launch_test(test/my_integration_test.py
 )
 ```
 
-**Source**: [ROS2 Integration Testing Docs](https://docs.ros.org/en/jazzy/Tutorials/Intermediate/Testing/Integration.html)
+**Source**: [ROS2 Integration Testing Docs](https://docs.ros.org/en/humble/Tutorials/Intermediate/Testing/Integration.html)
 
 ### 4. QoS Profile Mismatch
 
@@ -275,7 +275,7 @@ class TestIntegration(unittest.TestCase):
 
 ## References
 
-- [ROS2 Integration Testing Tutorial](https://docs.ros.org/en/jazzy/Tutorials/Intermediate/Testing/Integration.html)
+- [ROS2 Integration Testing Tutorial](https://docs.ros.org/en/humble/Tutorials/Intermediate/Testing/Integration.html)
 - [launch_testing GitHub](https://github.com/ros2/launch/tree/rolling/launch_testing)
 - [FastDDS Builtin Transports](https://fast-dds.docs.eprosima.com/en/latest/fastdds/transport/transport.html)
 - [ROS2 QoS Settings](https://docs.ros.org/en/rolling/Concepts/Intermediate/About-Quality-of-Service-Settings.html)

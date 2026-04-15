@@ -11,8 +11,8 @@ Supported Platform
 
 The release surface documented here is:
 
-* Ubuntu 24.04
-* ROS2 Jazzy
+* Ubuntu 22.04+ (validated on 22.04/Humble and 24.04/Jazzy)
+* ROS2 Humble or Jazzy
 * NVIDIA GPU with a working host driver
 * CUDA 12.x userspace for CuPy
 
@@ -30,11 +30,11 @@ Create a ROS2 workspace and clone the ``ros2`` branch explicitly.
   cd ~/ros2_ws/src
   git clone -b ros2 https://github.com/leggedrobotics/elevation_mapping_cupy.git
 
-Source ROS2 Jazzy before building:
+Source ROS2 before building (Humble shown):
 
 .. code-block:: bash
 
-  source /opt/ros/jazzy/setup.bash
+  source /opt/ros/humble/setup.bash
 
 System Dependencies
 ==================================================================
@@ -44,7 +44,8 @@ Install ROS dependencies with ``rosdep``.
 .. code-block:: bash
 
   cd ~/ros2_ws
-  rosdep install --from-paths src --ignore-src --rosdistro jazzy -r -y \
+  ROS_DISTRO=${ROS_DISTRO:-humble}
+  rosdep install --from-paths src --ignore-src --rosdistro ${ROS_DISTRO} -r -y \
     --skip-keys "cupy-cuda12x numpy_lessthan_2 simple-parsing"
 
 The package manifest deliberately depends on a CUDA-specific CuPy wheel and a
@@ -128,7 +129,7 @@ needs GPU access from the host driver.
 Release Validation Status
 ==================================================================
 
-The ``v2.1.0`` ROS2/Jazzy release validation was executed on a self-hosted
-NVIDIA runner using the ``moleworks_ros`` container. See
-:doc:`../release_notes/jazzy_release` for the exact test surface and remaining
-known issues.
+The ``v2.1.0`` ROS2 release validation was executed on a self-hosted
+NVIDIA runner using the ``moleworks_ros`` container (Jazzy baseline). See
+:doc:`../release_notes/jazzy_release` for the exact test surface and known
+issues.

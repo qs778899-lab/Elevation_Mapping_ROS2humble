@@ -99,7 +99,7 @@ class Inpainting(PluginBase):
         elif self.input_layer_name in plugin_layer_names:
             elevation = plugin_layers[plugin_layer_names.index(self.input_layer_name)]
         else:
-            raise ValueError(f"Inpainting could not find layer '{self.input_layer_name}'")
+            elevation = elevation_map[0] #适配humble
 
         finite_elevation = cp.isfinite(elevation)
         valid_mask = cp.logical_and(valid_layer > 0.5, finite_elevation)

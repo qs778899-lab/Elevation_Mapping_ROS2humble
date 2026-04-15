@@ -36,4 +36,4 @@
     :maxdepth: 1
     :caption: Release Notes
 
-    Jazzy Release <release_notes/jazzy_release>
+    ROS2 Jazzy Baseline <release_notes/jazzy_release>

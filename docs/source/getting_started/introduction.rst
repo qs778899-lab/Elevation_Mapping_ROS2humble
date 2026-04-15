@@ -8,7 +8,7 @@ Introduction
 It fuses geometry and optional semantic inputs into a grid map that can be
 published to planners, visualizers, and downstream perception components.
 
-This documentation describes the official ``ros2`` branch for ROS2 Jazzy.
+This documentation describes the official ``ros2`` branch for ROS2 (Humble/Jazzy).
 The ``main`` branch remains the legacy ROS1 line.
 
 What This Branch Covers
@@ -17,7 +17,7 @@ What This Branch Covers
 * Core elevation mapping in Python with CuPy-backed map updates.
 * Pointcloud fusion, image fusion, and plugin-based post-processing.
 * Semantic fusion through the in-repo ``semantic_sensor`` package.
-* TurtleBot3 example launches and integration tests validated on ROS2 Jazzy.
+* TurtleBot3 example launches and integration tests validated on ROS2.
 
 What is not part of the supported ROS2 release surface:
 

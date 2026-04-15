@@ -1,8 +1,26 @@
 from setuptools import find_packages, setup
+from setuptools.command.develop import develop
 import os
 from glob import glob
 
 package_name = 'semantic_sensor'
+
+
+class ColconDevelopCommand(develop):
+    """Compatibility wrapper for colcon's legacy setuptools develop flags."""
+
+    user_options = develop.user_options + [
+        ("editable", None, "Ignored compatibility flag from colcon."),
+        ("build-directory=", None, "Ignored compatibility flag from colcon."),
+        ("script-dir=", None, "Legacy setuptools develop option used by setup.cfg."),
+    ]
+    boolean_options = list(getattr(develop, "boolean_options", [])) + ["editable"]
+
+    def initialize_options(self):
+        super().initialize_options()
+        self.editable = False
+        self.build_directory = None
+        self.script_dir = None
 
 setup(
     name=package_name,
@@ -29,4 +47,5 @@ setup(
             'image_node = semantic_sensor.image_node:main',
         ],
     },
+    cmdclass={"develop": ColconDevelopCommand},
 )

@@ -1,0 +1,24 @@
+/elevation_mapping_node:
+  ros__parameters:
+    # For bring-up without robot state estimator, keep map/base on livox_frame.
+    # After full robot TF is available, switch back to odom/base_link.
+    map_frame: 'livox_frame'
+    base_frame: 'livox_frame'
+    corrected_map_frame: 'livox_frame'
+    initialize_frame_id: ['livox_frame']
+
+    subscribers:
+      front_lidar:
+        # MID360 PointCloud2 topic from livox_ros_driver2 when xfer_format=0.
+        topic_name: '/livox/lidar'
+        data_type: pointcloud
+
+    publishers:
+      elevation_map_raw:
+        layers: ['elevation', 'traversability', 'variance']
+        basic_layers: ['elevation']
+        fps: 5.0
+      elevation_map_filter:
+        layers: ['min_filter', 'smooth', 'near_base_filtered', 'despiked', 'inpaint', 'elevation']
+        basic_layers: ['min_filter', 'smooth', 'near_base_filtered', 'despiked', 'inpaint']
+        fps: 3.0

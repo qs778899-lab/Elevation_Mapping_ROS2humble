@@ -713,7 +713,7 @@ class ElevationMappingNode(Node):
     def _make_topic_metadata(self, topic: str) -> rosbag2_py.TopicMetadata:
         msg_type = "grid_map_msgs/msg/GridMap"
         serialization_format = "cdr"
-        return rosbag2_py.TopicMetadata(0, topic, msg_type, serialization_format)
+        return rosbag2_py.TopicMetadata(name=topic, type=msg_type, serialization_format=serialization_format) #适配humble
 
     def _write_grid_map_bag(self, path: Path, topic: str, grid_map_msg: GridMap) -> None:
         writer = rosbag2_py.SequentialWriter()
@@ -863,6 +863,15 @@ class ElevationMappingNode(Node):
         additional_channels = list(self.param.subscriber_cfg[sub_key].get("channels", []))
         channels = ["x", "y", "z"] + additional_channels
 
+        # If config requests optional channels (e.g., Livox 'tag') that are absent
+        # in this PointCloud2 stream, skip those channels instead of failing hard.
+        if additional_channels:
+            field_names = {f.name for f in msg.fields}
+            missing_optional = [ch for ch in additional_channels if ch not in field_names]
+            if missing_optional:
+                additional_channels = [ch for ch in additional_channels if ch in field_names]
+                channels = ["x", "y", "z"] + additional_channels
+
         if additional_channels:
             points = rnp.numpify(msg)
             if points is None:
@@ -918,6 +927,17 @@ class ElevationMappingNode(Node):
             pts = _pointcloud2_xyz_f32(msg)
         if pts.size == 0:
             return
+
+        # Optional Livox tag-noise filtering:
+        # Discard points whose tag is in (0, 16), matching Livox recommendation
+        # from user-provided reference logic.
+        if "tag" in channels:
+            tag_idx = channels.index("tag")
+            tag_values = pts[:, tag_idx]
+            keep = ~((tag_values > 0) & (tag_values < 16))
+            pts = pts[keep]
+            if pts.size == 0:
+                return
 
         frame_sensor_id = msg.header.frame_id
         if not frame_sensor_id:

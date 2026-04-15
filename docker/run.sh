@@ -1,5 +1,6 @@
 #!/bin/bash
-IMAGE_NAME="elevation_mapping_cupy:jazzy"
+ROS_DISTRO=${ROS_DISTRO:-humble}
+IMAGE_NAME=${IMAGE_NAME:-"elevation_mapping_cupy:${ROS_DISTRO}"}
 
 # Define environment variables for enabling graphical output for the container.
 XSOCK=/tmp/.X11-unix

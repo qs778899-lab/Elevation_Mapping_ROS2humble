@@ -2,7 +2,7 @@
 
 Tutorial
 ******************************************************************
-This tutorial covers the launch files that are part of the supported ROS2/Jazzy
+This tutorial covers the launch files that are part of the supported ROS2
 surface of the ``ros2`` branch.
 
 If you want to implement your own post-processing layers, refer to
@@ -16,7 +16,7 @@ The generic launch file accepts a robot-specific config under
 
 .. code-block:: bash
 
-  source /opt/ros/jazzy/setup.bash
+  source /opt/ros/humble/setup.bash
   source ~/ros2_ws/install/setup.bash
 
   ros2 launch elevation_mapping_cupy elevation_mapping.launch.py \
@@ -38,7 +38,8 @@ Install the simulation packages first:
 
 .. code-block:: bash
 
-  sudo apt install ros-jazzy-turtlebot3-gazebo ros-jazzy-turtlebot3-teleop
+  ROS_DISTRO=${ROS_DISTRO:-humble}
+  sudo apt install ros-${ROS_DISTRO}-turtlebot3-gazebo ros-${ROS_DISTRO}-turtlebot3-teleop
 
 Then launch the TurtleBot3 example:
 
@@ -51,7 +52,7 @@ Open a second terminal to drive the robot:
 
 .. code-block:: bash
 
-  source /opt/ros/jazzy/setup.bash
+  source /opt/ros/humble/setup.bash
   source ~/ros2_ws/install/setup.bash
   export TURTLEBOT3_MODEL=waffle
   ros2 run turtlebot3_teleop teleop_keyboard

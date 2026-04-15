@@ -4,10 +4,21 @@ set -euo pipefail
 
 TORCHVISION_VERSION=${TORCHVISION_VERSION:-0.25.0}
 PYTORCH_EXTRA_INDEX_URL=${PYTORCH_EXTRA_INDEX_URL:-https://download.pytorch.org/whl/cu128}
+ROS_DISTRO=${ROS_DISTRO:-humble}
 
 echo "=== ROS environment ==="
 set +u
-source /opt/ros/jazzy/setup.bash
+if [[ ! -f "/opt/ros/${ROS_DISTRO}/setup.bash" ]]; then
+  echo "Requested ROS distro '${ROS_DISTRO}' not found in /opt/ros."
+  if ls /opt/ros/*/setup.bash >/dev/null 2>&1; then
+    ROS_DISTRO=$(basename "$(dirname "$(ls -1 /opt/ros/*/setup.bash | head -n1)")")
+    echo "Falling back to detected distro: ${ROS_DISTRO}"
+  else
+    echo "No ROS2 installation found under /opt/ros."
+    exit 1
+  fi
+fi
+source "/opt/ros/${ROS_DISTRO}/setup.bash"
 set -u
 
 echo "=== GPU check ==="

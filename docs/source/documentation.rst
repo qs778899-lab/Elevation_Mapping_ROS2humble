@@ -2,7 +2,7 @@
 Elevation Mapping CuPy ROS2 Documentation
 ##################################################
 
-Welcome to the documentation for the official ROS2/Jazzy branch of
+Welcome to the documentation for the official ROS2 branch of
 ``elevation_mapping_cupy``.
 
 .. image:: https://github.com/leggedrobotics/elevation_mapping_cupy/actions/workflows/jazzy-docker-tests.yml/badge.svg
@@ -14,7 +14,7 @@ Welcome to the documentation for the official ROS2/Jazzy branch of
     :alt: Documentation
 
 This documentation tracks the ``ros2`` branch, which is the actively maintained
-ROS2/Jazzy line. The legacy ROS1 line remains on ``main``.
+ROS2 line (Humble/Jazzy). The legacy ROS1 line remains on ``main``.
 
 Highlights
 ---------------
@@ -28,9 +28,9 @@ Start here
 ---------------
 
 | :doc:`getting_started/introduction` - Branch scope, map inputs, and supported features
-| :doc:`getting_started/installation` - ROS2 Jazzy installation and build
+| :doc:`getting_started/installation` - ROS2 installation and build
 | :doc:`getting_started/tutorial` - Launching the node, TurtleBot3 demo, and semantic demos
-| :doc:`release_notes/jazzy_release` - ROS2 Jazzy release status and validation summary
+| :doc:`release_notes/jazzy_release` - ROS2 Jazzy release status and validation summary (baseline)
 
 The legacy plane-segmentation stack is not part of the current ROS2 workspace.
 The supported release surface for this branch is the Python/CuPy elevation

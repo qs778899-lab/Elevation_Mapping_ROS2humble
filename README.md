@@ -6,9 +6,9 @@
 
 ## Branch Selection
 
-- For ROS2 Jazzy, use the [`ros2`](https://github.com/leggedrobotics/elevation_mapping_cupy/tree/ros2) branch.
+- For ROS2 (Humble/Jazzy), use the [`ros2`](https://github.com/leggedrobotics/elevation_mapping_cupy/tree/ros2) branch.
 - The `main` branch is the legacy ROS1 line.
-- Current ROS2/Jazzy release: `v2.1.0`.
+- Current ROS2 release tag: `v2.1.0` (Jazzy baseline validation).
 
 ## Overview
 
@@ -21,7 +21,7 @@ GPU-accelerated elevation mapping for robotic navigation and locomotion. This pa
 
 | Branch | Status | Description |
 |--------|--------|-------------|
-| `ros2` (this branch) | **Actively maintained** | ROS2 Jazzy branch, Python bindings only, maintained by Lorenzo Terenzi |
+| `ros2` (this branch) | **Actively maintained** | ROS2 branch, Python bindings only, maintained by Lorenzo Terenzi |
 | `ros2_cpp` | Work in progress | C++ bindings (external contribution, not currently running) |
 | `main` | Legacy | ROS1 version |
 
@@ -41,7 +41,7 @@ GPU-accelerated elevation mapping for robotic navigation and locomotion. This pa
 
 ## Requirements
 
-- **ROS2**: Jazzy (recommended)
+- **ROS2**: Humble or Jazzy (Humble shown in local setup examples)
 - **CUDA**: 12.x
 - **Python**: 3.10+
 - **GPU**: NVIDIA GPU with CUDA support
